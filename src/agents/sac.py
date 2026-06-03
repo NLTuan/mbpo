@@ -24,4 +24,4 @@ class SAC(nn.Module):
         self.actor_optim = torch.optim.Adam(self.actor.parameters(), lr=lr)
         
     def update(self):
-        
+        pass
