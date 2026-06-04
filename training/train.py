@@ -55,9 +55,9 @@ def train():
         
         # 4. Update Agent
         if step >= update_after:
-            state_batch, action_batch, reward_batch, next_state_batch, mask_batch = buffer.sample(batch_size)
+            state_batch, action_batch, reward_batch, next_state_batch, done_batch = buffer.sample(batch_size)
             # This calls the method you are going to write in sac.py!
-            agent.update(state_batch, action_batch, reward_batch, next_state_batch, mask_batch)
+            agent.update(state_batch, action_batch, reward_batch, next_state_batch, done_batch)
             
         # 5. Handle Episode End
         if done:
