@@ -10,7 +10,7 @@ LOG_SIG_MIN = -20
 epsilon = 1e-6
 
 class QNetwork(nn.Module):
-    def __init__(self, env: gym.Env, hidden_dim=256):
+    def __init__(self, env: gym.Env, hidden_dim=32):
         super().__init__()
         
         state_dim = env.observation_space.shape[0]
@@ -44,7 +44,7 @@ class QNetwork(nn.Module):
         return q1, q2
 
 class Actor(nn.Module):
-    def __init__(self, env: gym.Env, hidden_dim=256):
+    def __init__(self, env: gym.Env, hidden_dim=32):
         super().__init__()
         
         state_dim = env.observation_space.shape[0]

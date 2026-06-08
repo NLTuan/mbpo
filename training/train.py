@@ -11,7 +11,12 @@ from src.agents.sac import SAC
 from src.buffers.replay_buffer import ReplayBuffer
 
 def train():
-    env = gym.make("HalfCheetah-v4")
+    # We add render_mode="rgb_array" so the environment can generate video frames
+    env = gym.make("HalfCheetah-v5", render_mode="rgb_array")
+    
+    # We wrap the environment in a RecordVideo wrapper.
+    # This will automatically save an MP4 of the agent's performance every 20 episodes!
+    env = gym.wrappers.RecordVideo(env, video_folder="videos", episode_trigger=lambda ep: ep % 20 == 0)
     
     state_dim = env.observation_space.shape[0]
     action_dim = env.action_space.shape[0]

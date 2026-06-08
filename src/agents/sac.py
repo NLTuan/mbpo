@@ -5,7 +5,7 @@ import torch.nn.functional as F
 
 import gymnasium as gym
 
-from networks import QNetwork, Actor
+from src.agents.networks import QNetwork, Actor
 
 class SAC(nn.Module):
     def __init__(self, env: gym.Env, lr=3e-4, gamma=0.99, tau=0.005, alpha=0.2):
@@ -29,8 +29,8 @@ class SAC(nn.Module):
         state_batch = torch.FloatTensor(state_batch).to(self.device)                                                                                
         next_state_batch = torch.FloatTensor(next_state_batch).to(self.device)                                                                      
         action_batch = torch.FloatTensor(action_batch).to(self.device)                                                                              
-        reward_batch = torch.FloatTensor(reward_batch).to(self.device).unsqueeze(1)                                                                 
-        done_batch = torch.FloatTensor(done_batch).to(self.device).unsqueeze(1)
+        reward_batch = torch.FloatTensor(reward_batch).to(self.device)
+        done_batch = torch.FloatTensor(done_batch).to(self.device)
         
         with torch.no_grad():
             next_action, next_log_prob, _ = self.actor.sample(next_state_batch)
